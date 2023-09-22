@@ -8,38 +8,43 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="row display">0</div>
+        <div class="row display">|</div>
         <div class="row">
-            <button id="clear-button" value="AC">AC</button>
-            <button id="sign-button" value="change-sign">
-                <span>+</span>
-                <span>/</span>
-                <span>-</span>
-            </button>
-            <button id="percentage-button" value="%">%</button>
-            <button id="division-button" value="÷">÷</button>
+            <button id="clear-button" value="AC">x</button>
+            <button id="left-parentheses-button" value="(">(</button>
+            <button id="right-parentheses-button" value=")">)</button>
+            <button id="mod-button" value="mod">mod</button>
+            <button id="pi-button" value="pi">π</button>
         </div>
         <div class="row">
             <button id="seven-button" value="7">7</button>
             <button id="eight-button" value="8">8</button>
             <button id="nine-button" value="9">9</button>
-            <button id="multiply-button" value="x">x</button>
+            <button id="division-button" value="÷">÷</button>
+            <button id="rootsquare-button" value="rootsquare">√</button>
         </div>
         <div class="row">
             <button id="four-button" value="4">4</button>
             <button id="five-button" value="5">5</button>
             <button id="six-button" value="6">6</button>
-            <button id="subtract-button" value="-">-</button>
+            <button id="multiply-button" value="x">x</button>
+            <button id="squared-button" value="square">x²</button>
         </div>
         <div class="row">
-            <button id="one-button" value="1">1</button>
-            <button id="two-button" value="2">2</button>
-            <button id="three-button" value="3">3</button>
-            <button id="add-button" value="+">+</button>
-        </div>
-        <div class="row">
-            <button id="zero-button" value="0">0</button>
-            <button id="decimal-button" value=".">.</button>
+            <div class="sub-row">
+                <div class="sub-row-item">
+                    <button id="one-button" value="1">1</button>
+                    <button id="two-button" value="2">2</button>
+                    <button id="three-button" value="3">3</button>
+                    <button id="subtract-button" value="-">-</button>
+                </div>
+                <div class="sub-row-item">
+                    <button id="zero-button" value="0">0</button>
+                    <button id="decimal-button" value=".">.</button>
+                    <button id="percent-button" value="%">%</button>
+                    <button id="add-button" value="+">+</button>
+                </div>
+            </div>
             <button id="equals-button" value="=">=</button>
         </div>
     </div>
