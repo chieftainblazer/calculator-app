@@ -1,4 +1,7 @@
 function parseEquation(currentExpression) {
+    currentExpression = currentExpression.replace("%", "/100");
+    currentExpression = currentExpression.replace("mod", "%");
+    currentExpression = currentExpression.replace("π", Math.PI);
     let newExpression = '';
     for (let i = 0; i < currentExpression.length; i++) {
         if (i + 1 < currentExpression.length && currentExpression.charAt(i) === "√") {
@@ -21,8 +24,10 @@ function parseEquation(currentExpression) {
             }
             squaredExpression += ")";
             const firstSection = currentExpression.substring(0, start);
-            const secondSection = currentExpression.substring(i);
+            const secondSection = currentExpression.substring(i, i + 1);
             newExpression = firstSection + squaredExpression + secondSection;
+        } else {
+            newExpression += currentExpression.charAt(i);
         }
     }
     return newExpression;
@@ -35,7 +40,11 @@ function populateDisplay(event) {
         display.textContent = "|";
     } else if (currentChoice === "=") {
         currentExpression = parseEquation(currentExpression);
-        currentExpression = Function("return " + currentExpression)();
+        try {
+            currentExpression = Function("return " + currentExpression)();
+        } catch (error) {
+            currentExpression = "Malformed expresion";
+        }
         display.textContent = currentExpression;
     } else {
         currentExpression += currentChoice;
