@@ -1,50 +1,31 @@
-const INPUT_1_TURN = 1;
-const INPUT_0_TURN = 0;
+function parseEquation(currentExpression) {
+    let newExpression = '';
+    for (let i = 0; i < currentExpression.length; i++) {
+        if (i + 1 < currentExpression.length && currentExpression.charAt(i) === "√") {
+            let squaredExpression = 'Math.sqrt';
+            const start = i;
+            i++;
+            if (currentExpression.charAt(i) !== '(') {
+                squaredExpression += '(';
+                while (i < currentExpression.length && !isNaN(Number(currentExpression.charAt(i)))) {
+                    squaredExpression += currentExpression.charAt(i);
+                    i++;
+                }
 
-function add(number1, number2) {
-    return number1 + number2;
-}
-
-function subtract(number1, number2) {
-    return number1 - number2;
-}
-
-function multiply(number1, number2) {
-    return number1 * number2;
-}
-
-function divide(number1, number2) {
-    return number1 / number2;
-}
-
-function operate(number1, number2, operator) {
-    if (operator === "/") {
-        return divide(number1, number2);
+            } else {
+                while (i < currentExpression.length && currentExpression.charAt(i) !== ')') {
+                    squaredExpression += currentExpression.charAt(i);
+                    i++;
+                }
+                i++;
+            }
+            squaredExpression += ")";
+            const firstSection = currentExpression.substring(0, start);
+            const secondSection = currentExpression.substring(i);
+            newExpression = firstSection + squaredExpression + secondSection;
+        }
     }
-    if (operator === "x") {
-        return multiply(number1, number2);
-    }
-    if (operator === "-") {
-        return subtract(number1, number2);
-    }
-    if (operator === "+") {
-        return add(number1, number2);
-    }
-    if (operator === "/") {
-        
-    }
-    if (operator === "/") {
-        
-    }
-    if (operator === "/") {
-        
-    }
-    if (operator === "/") {
-        
-    }
-    if (operator === "/") {
-        
-    }
+    return newExpression;
 }
 
 function populateDisplay(event) {
@@ -53,7 +34,9 @@ function populateDisplay(event) {
         currentExpression = "";
         display.textContent = "|";
     } else if (currentChoice === "=") {
-        display.textContent = Function("return " + currentExpression)();
+        currentExpression = parseEquation(currentExpression);
+        currentExpression = Function("return " + currentExpression)();
+        display.textContent = currentExpression;
     } else {
         currentExpression += currentChoice;
         display.textContent = currentExpression;
